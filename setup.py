@@ -60,7 +60,6 @@ def run_setup(with_binary):
         keywords="logs",
         platforms='any',
         packages=['logs'],
-        package_data={'logs': ['data']},
         scripts=['bin/log.py'],
         cmdclass=cmdclass,
         features=features,

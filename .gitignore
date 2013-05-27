@@ -6,4 +6,6 @@ ve/
 *.egg/
 .coverage
 .tox
+data/
+report/
 pkg/_speedups.so
