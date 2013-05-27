@@ -14,6 +14,9 @@ if __name__ == '__main__':
     opts.add_option('-l', '--log-level', type='choice', action='store',
             dest='level', choices=('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'),
             default='ERROR', help='Log level to use',)
+    opts.add_option('--order', type='choice', action='store', choices=('ASC', 'DESC'),
+            default='ASC', help='Order results asc or desc',)
+
     (options, args) = opts.parse_args()
     logging.basicConfig(level=options.level)
 
@@ -23,7 +26,9 @@ if __name__ == '__main__':
         else:
             fp = sys.stdin
 
-        analyzer = logs.Analyzer(fp, min_threshold=options.min_threshold, min_count=options.min_count)
-        logs.fmt(analyzer.percentile())
+        analyzer = logs.Analyzer(fp,
+            min_threshold=options.min_threshold,
+            min_count=options.min_count)
+        logs.fmt(analyzer.percentile(order=options.order))
     finally:
         fp.close()
